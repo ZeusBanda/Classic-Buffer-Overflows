@@ -6,5 +6,5 @@ SX[ShortDescription].py<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;where SX is the step number, followed by a short description.
 
 ## S1PoCFuzz.py
-usage ./S1PoCFuzz.py {IP} {Port} {Data} <br/>
+Usage: ./S1PoCFuzz.py {IP} {Port} {Data} <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;where data is an interger that represents the number of bytes that cause a crash.
