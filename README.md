@@ -45,5 +45,6 @@ The lines before our ESP show us that there are some 41s and some 42s.<br/>
 These 42s represent our EIP, but more importantly we see that our ESP points to 44s.<br/>
 This is where our shellcode will go.<br/>
 By chainging the value of L 10 to something higher we can see more bytes after our ESP. <br/>
+It is good practivce to navigate each register to see how the application handles data overall <br/>
 This can be important because some applications may not have enough memory for our shellcode.<br/>
 I will cover a few strategies later to overcome this limitation.<br/>
