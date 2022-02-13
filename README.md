@@ -50,7 +50,7 @@ This can be important because some applications may not have enough memory for o
 I will cover a few strategies later to overcome this limitation.<br/>
 ## S4BadChars.py
 Before we can generate our shellcode we need to do a few things.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(1) We have to find the characters that the vulnerable application handles in such a way that truncates our shellcode or causes our our attack to fail.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(1) We have to find the characters that causes our attack to fail.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(2) Find an appropriate module that, for now, doesn't have protections.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(3) Find a JMP command within our module<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&<br/>
