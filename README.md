@@ -7,4 +7,9 @@ SX[ShortDescription].py<br/>
 
 ## S1PoCFuzz.py
 Usage: ./S1PoCFuzz.py {IP} {Port} {Data} <br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;where data is an interger that represents the number of bytes that cause a crash.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;where data is an interger that represents the number of bytes that cause a crash.<br/>
+<br/>
+In our WinDbg debugger we see that we have overwriten every register except the ESP using the r command. <br/>
+We can see what the ESP register points to by using the following command:<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;dds esp
+![alt tag](https://github.com/ZeusBanda/Classic-Buffer-Overflows/blob/main/WinDbg-Images/S1Fuzz.png)
