@@ -8,6 +8,7 @@ SX[ShortDescription].py<br/>
 ## S1PoCFuzz.py
 Usage: ./S1PoCFuzz.py {IP} {Port} {Data} <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;where data is an interger that represents the number of bytes that cause a crash.<br/>
+This is a fuzzer that sends an arbitrary amount of data to a web based application that causes a crash.<br/>
 <br/>
 In our WinDbg debugger we see that we have overwriten every register except the ESP using the r command. <br/>
 We can see what the ESP register points to by using the following command:<br/>
