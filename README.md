@@ -44,7 +44,7 @@ This command shows us that our ESP is 041dee6c.<br/>
 The lines before our ESP show us that there are some 41s and some 42s.<br/>
 These 42s represent our EIP, but more importantly we see that our ESP points to 44s.<br/>
 This is where our shellcode will go.<br/>
-By chainging the value of L 10 to something higher we can see more bytes after our ESP. <br/>
+By changing the value of L 10 to something higher we can see more bytes after our ESP. <br/>
 It is good practivce to navigate each register to see how the application handles data overall <br/>
 This can be important because some applications may not have enough memory for our shellcode.<br/>
 I will cover a few strategies later to overcome this limitation.<br/>
@@ -65,4 +65,13 @@ We are also looking for characters that truncate the character array.<br/>
 Fortunately, this application does not have bad characters other than 00.<br/>
 However, it is very important to note what these bad characters are.<br/>
 We repeat this until we verify each character in our array.<br/>
-## Generating our Shell
+## Generating our Shellcode
+Before we can generate our shellcode, we need to find a module that contains a jump instruction.<br/>
+This jump instruction will help us jump to our shellcode.<br/>
+To do this we will use a program called process hacker and find our vulnerable application.<br/>
+![alt tag](https://github.com/ZeusBanda/Classic-Buffer-Overflows/blob/main/WinDbg-Images/S4Modules.png)
+The ideal module does not have any protection, meaning that the ASLR and CF Guard fields are blank.<br/>
+When we find a potentially suitable module, we go to our debugger and find the address for our jump command.<br/>
+![alt tag](https://github.com/ZeusBanda/Classic-Buffer-Overflows/blob/main/WinDbg-Images/S4JMPESP.png)
+The first command gives us the start and endpoint of the module whe 
+In this case since we are jumnping to the ESP we are searching for ff
