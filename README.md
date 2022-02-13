@@ -43,5 +43,5 @@ We can see what the ESP register points to with the following command:<br/>
 This command shows us that our before our ESP is 041dee6c. The lines before our ESP show us that there is some 41s and some 42s.<br/>
 These 42s represent our EIP, but more importantly we see that our ESP points to 44s which can be used to house our shellcode.<br/>
 By chainging the value of L 10 to something higher we can see more bytes after our ESP. <br/>
-This can be important because some application may not have enough memory for our shellcode.<br/>
+This can be important because some applications may not have enough memory for our shellcode.<br/>
 I will cover a few strategies later to overcome this limitation.
