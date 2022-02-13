@@ -53,9 +53,9 @@ Before we can generate our shellcode, we have to find what characters cause our 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Usage S4BadChars.py {IP} {Port}<br/>
 ![alt tag](https://github.com/ZeusBanda/Classic-Buffer-Overflows/blob/main/WinDbg-Images/S4BadChars.png)<br/>
 using the command dds esp in WinDBg we can see the character array we sent to the application.<br/>
-The nullbyte character (\x00) is ommited because its very likely to cause our attack to fail.<br/>
+The nullbyte character (\x00) is omitted because its very likely to cause our attack to fail.<br/>
 We are looking for characters that are out of place from 01 to ff.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;An out of place caracter may look like 01 02 03 04 08 06 07 08<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;An out of place character may look like 01 02 03 04 08 06 07 08<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;In this case we would return to our python script remove 05 and make a note of it.<br/>
 <br/>
 We are also looking for characters that truncate the character array.<br/>
@@ -73,5 +73,14 @@ To do this we will use a program called process hacker and find our vulnerable a
 The ideal module does not have any protection, meaning that the ASLR and CF Guard fields are blank.<br/>
 When we find a potentially suitable module, we go to our debugger and find the address for our jump command.<br/>
 ![alt tag](https://github.com/ZeusBanda/Classic-Buffer-Overflows/blob/main/WinDbg-Images/S4JMPESP.png)<br/>
-The first command gives us the start and endpoint of the module whe 
-In this case since we are jumnping to the ESP we are searching for ff
+The first command gives us the boundary of the module. This boundary limits our search scope for our jump command.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lm m vulnapp1<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;where lm list the modules and m specifies a pattern that must match our query of vulnapp1.<br/>
+The seccond command helps us achieve this.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;s -b 14800000 14816000 0xff 0xe4<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;This command searches for ffe4 from 14800000 14816000 displaying the (-b)bytes.<br/>
+In this case, since we are jumnping to the ESP we are searching for jmp esp which is ff e4<br/>
+But a different application might require a different jump code<br/>
+Which are here for your convinience. <br/>
+![alt tag](https://github.com/ZeusBanda/Classic-Buffer-Overflows/blob/main/WinDbg-Images/S4JMPCodes.png)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
