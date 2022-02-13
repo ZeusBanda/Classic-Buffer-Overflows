@@ -49,9 +49,20 @@ It is good practivce to navigate each register to see how the application handle
 This can be important because some applications may not have enough memory for our shellcode.<br/>
 I will cover a few strategies later to overcome this limitation.<br/>
 ## S4BadChars.py
-Before we can generate our shellcode we need to do a few things.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(1) We have to find the characters that causes our attack to fail.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(2) Find an appropriate module that, for now, doesn't have protections.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(3) Find a JMP command within our module<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(4) Generate our shellcode.<br/>
+Before we can generate our shellcode, we have to find what characters cause our attack to fail.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Usage S4BadChars.py {IP} {Port}<br/>
+![alt tag](https://github.com/ZeusBanda/Classic-Buffer-Overflows/blob/main/WinDbg-Images/S4BadChars.png)
+using the command dds esp in WinDBg we can see the character array we sent to the application.<br/>
+The nullbyte character (\x00) is ommited because its very likely to cause our attack to fail.<br/>
+We are looking for characters that are out of place from 01 to ff.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;An out of place caracter may look like 01 02 03 04 08 06 07 08<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;In this case we would return to our python script remove 05 and make a note of it.<br/>
+<br/>
+We are also looking for characters that truncate the character array.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Truncation looks like 97 98 99 9a 9b 9c 00 ff f3 5a<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Where 9d would need to be removed because 9c is the last character from our array.<br/>
+<br/>
+Fortunately, this application does not have bad characters other than 00.<br/>
+However, it is very important to note what these bad characters are.<br/>
+We repeat this until we verify each character in our array.<br/>
+## Generating our Shell
