@@ -27,3 +27,7 @@ Usage ./S2FindOffset.py {IP} {Port}<br/>
 <br/>
 From our debugger, we see that the EIP is overwritten by 33794332
 ![alt tag](https://github.com/ZeusBanda/Classic-Buffer-Overflows/blob/main/WinDbg-Images/S2EIP.png)
+Next we use find the offset that will overwrite the EIP by using the following command<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;msfvenom-pattern_offset -l {data} -q {eip}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; where -l {data} is the amount of data that caused the application to crash and -q {eip} is the area we want to overwrite.
+![alt tag](https://github.com/ZeusBanda/Classic-Buffer-Overflows/blob/main/WinDbg-Images/S2Offset.png)
