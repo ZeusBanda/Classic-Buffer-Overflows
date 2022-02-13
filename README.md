@@ -31,3 +31,14 @@ Next we use find the offset that will overwrite the EIP by using the following c
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;msfvenom-pattern_offset -l {data} -q {eip}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; where -l {data} is the amount of data that caused the application to crash and -q {eip} is the area we want to overwrite.
 ![alt tag](https://github.com/ZeusBanda/Classic-Buffer-Overflows/blob/main/WinDbg-Images/S2Offset.png)
+## S3ChangeEIP.py
+Now that we know where our EIP is, we want to verify it and find a suitable location for our reverse shell.<br/>
+usage ./S3ChangeEIP.py {IP} {port} {offset}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Where offset is the interger that obtained from the msfvenom-find_offset command<br/>
+<br/>
+In our WinDbg debugger we see that we have overwriten ESP with 42424242, or the hex representation of BBBB, using the r command. <br/>
+We can see what the ESP register points to with the following command:<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;dds esp -14 L10<br/>
+![alt tag](https://github.com/ZeusBanda/Classic-Buffer-Overflows/blob/main/WinDbg-Images/S3EIPOverwrite.png)
+This command shows us that our before our ESP is 041dee6c. The lines before our ESP show us that there is some 41s and some 42s.<br/>
+These 42s represend our EIP, but more importantly we see that our ESP points to 44s which can be used to house our shellcode.
