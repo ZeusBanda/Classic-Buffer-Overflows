@@ -91,3 +91,10 @@ Now we can generate out shellcode using the following command:<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-b lets you specify what the bad characters are.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;This is shown below.<br/>
 ![alt tag](https://github.com/ZeusBanda/Classic-Buffer-Overflows/blob/main/WinDbg-Images/S5GenerateShellcode.png)<br/>
+## S5FinalBoF.py
+Now we put everything together into this script and we get our code execution.<br/>
+Usage ./S5FinalBoF.py {ip} {port} {offset}<br/>
+Next we set up our listener and run this script.<br/>
+If everything went well we should have code execution<br/>
+Shown below is setting up the listener as well as proof of code execution...<br/>
+![alt tag](https://github.com/ZeusBanda/Classic-Buffer-Overflows/blob/main/WinDbg-Images/S6ReverseShell.png)<br/>
