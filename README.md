@@ -9,7 +9,7 @@ SX[ShortDescription].py<br/>
 These scripts are meant to be modified with the intent of hardcoding things like the ip and port number but that's just personal preference.<br/>
 Feel free to do whatever you want to do with these scripts within the confines of the law.<br/>
 You are solely responsible for your actions.<br/>
-# \*\~\*\~\*\~\*\~\*\~\*\~\*\~\*\~\*\~\*Legal Disclaimer\*\~\*\~\*\~\*\~\*\~\*\~\*\~\*\~\*\~\*
+# \*\~\*\~\*\~\*\~Legal Disclaimer\~\*\~\*\~\*\~\*
 
 ## S1PoCFuzz.py
 This is a fuzzer that sends an arbitrary amount of data to a web based application that causes a crash.<br/>
