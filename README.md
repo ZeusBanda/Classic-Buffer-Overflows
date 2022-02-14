@@ -89,3 +89,5 @@ Now we can generate out shellcode using the following command:<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;EXITFUNC=thread becuase we dont want to close the vulnerable app when we close the shell<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-e x86/shikata_ga_nai to encode the shellcode to either evade AV or avoid bad characters<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-b lets you specify what the bad characters are.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;This is shown below.<br/>
+![alt tag](https://github.com/ZeusBanda/Classic-Buffer-Overflows/blob/main/WinDbg-Images/S5GenerateShellcode.png)<br/>
