@@ -4,7 +4,10 @@ Python scripts needed to perform a buffer overflow from a previously known vulne
 For this particular application I also use WinDbg to build out from the PoC to getting a meterpreter shell. <br/>
 The naming covention I am using is as follows<br/>
 SX[ShortDescription].py<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;where SX is the step number, followed by a short description.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;where SX is the step number, followed by a short description.<br/>
+These scripts are meant to be modified with the intent of hardcoding things like the ip and port number but that's just personal preference.<br/>
+Feel free to do whatever you want to do with these scripts within the confines of the law.<br/>
+You are solely responsible for your actions.<br/>
 
 ## S1PoCFuzz.py
 This is a fuzzer that sends an arbitrary amount of data to a web based application that causes a crash.<br/>
